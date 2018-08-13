@@ -1,6 +1,6 @@
 # Box.com PDF Downloader
 
-This application can scrape and download protected docx, pdf files in box.com and save it as a editable PDF file.
+This application can scrape and download protected docx, pdf files in box.com and save it as an editable PDF file.
 
 ### Installation
 
