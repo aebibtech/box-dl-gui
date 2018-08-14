@@ -15,7 +15,7 @@ $ pip install -r requirements.txt
 $ python main.py -h
 ```
 
-Note: This need chrome selenium driver to work download and install it from [here](http://chromedriver.chromium.org/downloads)
+Note: This requires chrome selenium driver in order to work, you can download and install it from [here](http://chromedriver.chromium.org/downloads)
 
 ### Example Usage
 ```sh
