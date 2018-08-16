@@ -54,6 +54,7 @@ class Scraper:
 
         chrome_options = Options()
         if use_x11:
+            # use x11 to hide chrome session
             if platform.system() == "Linux":
                 self.display = Display(visible=0, size=(800, 600))
                 self.display.start()  # start new virtual display
@@ -65,7 +66,8 @@ class Scraper:
                     print("Install XQuartz from here http://xQuartz.org and try again")
                     sys.exit(-1)
         else:
-            # hide chrome session
+            # hide session using chrome headless mode
+            chrome_options.add_argument("--no-sandbox")
             chrome_options.add_argument("--headless")
             chrome_options.add_argument("--window-size=1280x800")
 

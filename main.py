@@ -26,8 +26,8 @@ parser.add_argument('--driver-path', default=None, dest='driver_location',
                     type=str, help="Specify your chrome driver path")
 parser.add_argument('--wait-time', default=15, dest='wait_time',
                     type=int, help="Wait time for selenium to load in seconds (default: 15)")
-parser.add_argument('--use-x11', default=False, action='store_false', dest='use_x11',
-                    help='Use X11 Virtual Display (For OSX/Linux Only)')
+parser.add_argument('--use-x11', default=False, action='store_true', dest='use_x11',
+                    help='Use X11 as virtual display instead of chrome headless mode (For OSX/Linux Only)')
 parser.add_argument('--version', action='version', version='Box.com PDF Downloader Version 1.0')
 parser.add_argument('--out', default=os.path.dirname(os.path.abspath(__file__)) + "/dl_files/",
                     dest="output_location", type=str, help="Output file folder location")
