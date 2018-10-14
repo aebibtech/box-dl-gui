@@ -32,6 +32,9 @@ Make a change in your file and instantanously see your updates!
  - Write MORE Tests
  - Checkout the source code to know more
 
+### Did you find this useful?
+[![ko-fi](https://www.ko-fi.com/img/donate_sm.png)](https://ko-fi.com/A362BEU)
+
 License
 ----
 GNU General Public License v3.0
