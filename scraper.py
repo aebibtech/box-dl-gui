@@ -18,7 +18,6 @@ import re
 import sys
 import time
 
-from easyprocess import EasyProcessCheckInstalledError
 from pyvirtualdisplay import Display
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -59,6 +58,7 @@ class Scraper:
                 self.display = Display(visible=0, size=(800, 600))
                 self.display.start()  # start new virtual display
             if platform.system() == "Darwin":  # for OSX which I am using
+                from easyprocess import EasyProcessCheckInstalledError # only darwin
                 try:
                     self.display = Display(visible=0, size=(800, 600))
                     self.display.start()  # start new virtual display
@@ -109,7 +109,10 @@ class Scraper:
         download_url = None  # default or error
         for i in network_requests:
             # this will scrap the pdf file in the word
-            if ("internal_files" in i["name"]) and ("pdf" in i["name"]):  # check for a pdf file
+            if (("public.boxcloud.com/api/2.0/files" in i["name"]) or 
+            ("dl.boxcloud.com/api/2.0/files" in i["name"])) and "content?preview=true" in i["name"]: # new method
+                download_url = i["name"]
+            elif ("internal_files" in i["name"]) and ("pdf" in i["name"]):  # check for a pdf file
                 download_url = i["name"]
         return download_url
 
