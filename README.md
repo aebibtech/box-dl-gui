@@ -16,7 +16,7 @@ Clone the repository and install the dependencies.
 ```
 
 ### Initial Setup
-Note: This requires chrome selenium driver in order to work, you can download and install it from [here](http://chromedriver.chromium.org/downloads)
+Note: Chrome Selenium driver is installed by setup.cmd. If it does not install, you can download and install it from [here](http://chromedriver.chromium.org/downloads)
 
 1. Run `BoxDL.cmd`
 2. Enter a default path for box.com downloads.
