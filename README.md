@@ -9,7 +9,7 @@ This app requires [Python](https://python.org/) 3 to run.
 Clone the repository and install the dependencies.
 
 ```sh
-$ git clone https://github.com/lfasmpao/box.com-downloader
+$ git clone https://github.com/aebibtech/box.com-downloader
 $ cd box.com-downloader
 $ pip install -r requirements.txt
 $ python main.py -h
