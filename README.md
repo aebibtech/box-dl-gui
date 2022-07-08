@@ -8,19 +8,23 @@ This app requires [Python](https://python.org/) 3 to run.
 
 Clone the repository and install the dependencies.
 
-```sh
-$ git clone https://github.com/aebibtech/box.com-downloader
-$ cd box.com-downloader
-$ pip install -r requirements.txt
-$ python main.py -h
+```cmd
+> git clone https://github.com/aebibtech/box.com-downloader
+> cd box.com-downloader
+> call setup.cmd
+> call BoxDL.cmd
 ```
 
+### Initial Setup
 Note: This requires chrome selenium driver in order to work, you can download and install it from [here](http://chromedriver.chromium.org/downloads)
 
+1. Run `BoxDL.cmd`
+2. Enter a default path for box.com downloads.
+
 ### Example Usage
-```sh
-$ cd box.com-downloader
-$ python main.py https://app.box.com/s/hs5de51wub2htrcl0hxn1wir4zpmf3wj
+```pwsh
+> sf 'Test'
+> dl https://app.box.com/s/hs5de51wub2htrcl0hxn1wir4zpmf3wj
 ```
 
 ### Development
