@@ -58,7 +58,7 @@ def main():
     directory = os.path.dirname(args.output_location)
     if not os.path.exists(directory):
         os.makedirs(directory)
-    print("Downloading..\nFile will be save as:",
+    print("Downloading..\nFile will be saved as:",
           str(args.output_location + dl_name + ".pdf"))
     download_file(url=dl_url, path=str(args.output_location + dl_name + ".pdf"))
 
