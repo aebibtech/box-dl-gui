@@ -4,7 +4,7 @@ This application can scrape and download protected docx, pdf files in box.com an
 
 ### Installation
 
-This app requires [Python](https://python.org/) 3 to run.
+This app requires [Python](https://python.org/) 3, [Google Chrome](https://chrome.google.com), and chromedriver to run.
 
 Clone the repository and install the dependencies.
 
