@@ -15,6 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 import argparse
 import os
+import webbrowser
 
 from downloader import download_file
 from scraper import Scraper, url_checker
@@ -61,6 +62,8 @@ def main():
     print("Downloading..\nFile will be saved as:",
           str(args.output_location + dl_name + ".pdf"))
     download_file(url=dl_url, path=str(args.output_location + dl_name + ".pdf"))
+    if os.path.exists(str(args.output_location + dl_name + ".pdf")):
+        webbrowser.open(str(args.output_location + dl_name + ".pdf"))
 
 
 if __name__ == "__main__":

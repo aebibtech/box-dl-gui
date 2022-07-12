@@ -1,6 +1,7 @@
 Set-Location $PSScriptRoot
 & venv/Scripts/Activate.ps1
 
+$global:driver = $HOME + '\scoop\shims\chromedriver.exe'
 $global:out = ''
 $global:subfol = ''
 function Write-Out {
@@ -23,7 +24,7 @@ function dl {
         Write-Host
         Write-Host
     } else {
-        python.exe .\main.py $args[0] --driver-path 'C:/ProgramData/chocolatey/lib/chromedriver/tools/chromedriver.exe' --out $global:subfol
+        python.exe .\main.py $args[0] --driver-path $global:driver --out $global:subfol
     }
 }
 
