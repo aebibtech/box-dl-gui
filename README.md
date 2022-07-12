@@ -22,10 +22,13 @@ Note: Chrome Selenium driver is installed by setup.cmd. If it does not install, 
 2. Enter a default path for box.com downloads.
 
 ### Example Usage
-```pwsh
-> sf 'Test'
-> dl https://app.box.com/s/hs5de51wub2htrcl0hxn1wir4zpmf3wj
-```
+
+To Change your subfolder for downloads, use `sf` command:
+`sf 'Test'`
+
+To download a box document, use the `dl` command:
+`dl https://app.box.com/s/hs5de51wub2htrcl0hxn1wir4zpmf3wj`
+
 
 ### Development
 
