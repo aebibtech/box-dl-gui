@@ -1,7 +1,7 @@
 Set-Location $PSScriptRoot
 & venv/Scripts/Activate.ps1
 
-$global:driver = $HOME + '\scoop\shims\chromedriver.exe'
+$global:driver = (Get-Command chromedriver).Path
 $global:out = ''
 $global:subfol = ''
 function Write-Out {
