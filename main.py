@@ -32,6 +32,7 @@ parser.add_argument('--use-x11', default=False, action='store_true', dest='use_x
 parser.add_argument('--version', action='version', version='Box.com PDF Downloader Version 1.0')
 parser.add_argument('--out', default=os.path.dirname(os.path.abspath(__file__)) + "/dl_files/",
                     dest="output_location", type=str, help="Output file folder location")
+# parser.add_argument('--open', default=False, action='store_true', dest='open', help='Automatically open PDF on browser.')
 args = parser.parse_args()
 
 
@@ -62,6 +63,7 @@ def main():
     print("Downloading..\nFile will be saved as:",
           str(args.output_location + dl_name + ".pdf"))
     download_file(url=dl_url, path=str(args.output_location + dl_name + ".pdf"))
+    
     if os.path.exists(str(args.output_location + dl_name + ".pdf")):
         webbrowser.open(str(args.output_location + dl_name + ".pdf"))
 
