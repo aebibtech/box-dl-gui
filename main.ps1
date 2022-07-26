@@ -25,8 +25,8 @@ function dl {
         Write-Host
     } else {
         # python.exe .\main.py $args[0] --driver-path $global:driver --out $global:subfol
-        ForEach-Object -InputObject $args -Process {
-            python.exe .\main.py $_ --driver-path $global:driver --out $global:subfol
+        foreach($arg in $args) {
+            python.exe .\main.py $arg --driver-path $global:driver --out $global:subfol
         }
     }
 }
