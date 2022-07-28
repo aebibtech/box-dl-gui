@@ -1,4 +1,4 @@
-# Box.com PDF Downloader
+# Box.com PDF Downloader GUI
 
 This application can scrape and download protected docx, pdf files in box.com and save it as an editable PDF file.
 
@@ -9,25 +9,14 @@ This app requires [Python 3](https://python.org/), [Google Chrome](https://chrom
 Clone the repository and install the dependencies.
 
 ```cmd
-> git clone https://github.com/aebibtech/box.com-downloader
-> cd box.com-downloader
-> call setup.cmd
-> call BoxDL.cmd
+git clone https://github.com/aebibtech/box.com-downloader
+cd box.com-downloader
+call setup.cmd
 ```
 
-### Initial Setup
-Note: Chrome Selenium driver is installed by setup.cmd. If it does not install, you can download and install it from [here](http://chromedriver.chromium.org/downloads)
-
-1. Run `BoxDL.cmd`
-2. Enter a default path for box.com downloads.
-
-### Example Usage
-1. Run `BoxDL.cmd`.
-2. To Change your subfolder for downloads, use `sf` command:
-`sf 'Test'`
-
-3. To download a box document, use the `dl` command:
-`dl https://app.box.com/s/hs5de51wub2htrcl0hxn1wir4zpmf3wj`
+### Usage
+1. Run `BoxGUI.cmd` from the Folder.
+2. (Optional) You can also create a shortcut of it on the Desktop.
 
 
 ### Development
