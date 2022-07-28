@@ -14,6 +14,11 @@ if not exist "%USERPROFILE%\scoop\shims\chromedriver.exe" (
 
 cd %~dp0
 
-pip install -r requirements.txt 
+if not exist venv ( python -m venv venv )
+
+if exist venv (
+	call venv\Scripts\activate.bat
+	pip install -r requirements.txt 
+)
 
 pause
