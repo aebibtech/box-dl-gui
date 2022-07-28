@@ -6,6 +6,7 @@ from tkinter import messagebox
 from tkinter import font
 import sv_ttk
 from winreg import *
+import time
 
 window = tk.Tk()
 window.title("Box.com Downloader GUI")
@@ -58,8 +59,10 @@ lbl_links.grid(row=0, padx=5, pady=5, sticky="w")
 txt_links = tk.Text(master=frm_dl, width=63, height=20)
 txt_links.grid(row=1, padx=5, pady=5)
 
+lbl_status = ttk.Label(master=frm_dl,text="Status: Ready")
 
 def evt_download():
+    global lbl_status
     from scraper import Scraper, url_checker
     from downloader import download_file
 
@@ -71,9 +74,11 @@ def evt_download():
     
     for url in urls:
         if url_checker(url) is False:  # url format check
-            messagebox.showerror(title="Value has to be in full url format http:// or http://")
+            lbl_status.config(text="Status: One of the URLs is invalid.")
+            #messagebox.showerror(title="One of the URLs is invalid.")
             return
         else:
+            lbl_status.config(text="Status: Scraping...")
             box_object = Scraper(url, driver_path, False, 10)
             box_object.load_url()
             dl_name = box_object.get_download_title()
@@ -87,7 +92,16 @@ def evt_download():
             directory = os.path.dirname(output_location)
             if not os.path.exists(directory):
                 os.makedirs(directory)
+            
+            dl_status = "Status: Downloading {} as {}".format(url, str(dl_name + ".pdf"))
+            lbl_status.config(text=dl_status)
             download_file(url=dl_url, path=str(output_location + dl_name + ".pdf"))
+            if os.path.exists(str(output_location + dl_name + ".pdf")):
+                lbl_status.config(text="Status: Download Successful!")
+                time.sleep(2.5)
+                lbl_status.config(text="Status: Ready")
+            else:
+                lbl_status.config("Status: Download Failed.")
     
 
 
@@ -101,6 +115,8 @@ def clear():
 
 btn_clr = ttk.Button(master=frm_dl, text="Clear", command=clear)
 btn_clr.grid(row=2, padx=95, pady=5, sticky="w")
+
+lbl_status.grid(row=2, padx=160, pady=5, sticky="w")
 # End
 
 monitor_changes()
