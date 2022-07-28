@@ -1,2 +1,3 @@
 PyVirtualDisplay
 selenium
+sv_ttk
