@@ -1,6 +1,6 @@
 # Box.com PDF Downloader GUI
 
-This application can scrape and download protected docx, pdf files in box.com and save it as an editable PDF file.
+This application can scrape and download protected docx, pdf files in box.com and save it as an editable PDF file. This repo is an extension of [lfasmpao's](https://github.com/lfasmpao/box.com-downloader) box.com downloader.
 
 ### Installation
 
