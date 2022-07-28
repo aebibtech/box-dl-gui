@@ -1,3 +1,3 @@
 cd %~dp0
 
-start pythonw gui.py
+start python gui.py
