@@ -1,5 +1,6 @@
 import tkinter as tk
 import tkinter.ttk as ttk
+import platform
 import os
 from tkinter import filedialog
 from tkinter import messagebox
@@ -119,5 +120,8 @@ btn_clr.grid(row=2, padx=95, pady=5, sticky="w")
 lbl_status.grid(row=2, padx=160, pady=5, sticky="w")
 # End
 
-monitor_changes()
+if platform.system() == "Windows":
+    print("Platform:", platform.system())
+    monitor_changes()
+
 window.mainloop()
