@@ -6,19 +6,24 @@ from tkinter import filedialog
 from tkinter import messagebox
 from tkinter import font
 import sv_ttk
-from winreg import *
 import time
 
 window = tk.Tk()
 window.title("Box.com Downloader GUI")
 window.wm_resizable(width=False, height=False)
 
+if platform.system() == "Windows":
+    from winreg import *
+
 def monitor_changes():
-    registry = ConnectRegistry(None, HKEY_CURRENT_USER)
-    key = OpenKey(registry, r'SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize')
-    mode = QueryValueEx(key, "AppsUseLightTheme")
-    sv_ttk.set_theme("light" if mode[0] else "dark")
-    window.after(100, monitor_changes)
+    try:
+        registry = ConnectRegistry(None, HKEY_CURRENT_USER)
+        key = OpenKey(registry, r'SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize')
+        mode = QueryValueEx(key, "AppsUseLightTheme")
+        sv_ttk.set_theme("light" if mode[0] else "dark")
+        window.after(100, monitor_changes)
+    except:
+        pass
 
 
 bold = font.Font(weight="bold")
