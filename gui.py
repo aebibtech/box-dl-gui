@@ -91,7 +91,12 @@ def evt_download():
     urls = txt_links.get("1.0", "end").split()
     if urls == []:
         messagebox.showinfo(message="Nothing to download.")
-    driver_path = os.path.expanduser("~\scoop\shims\chromedriver.exe")
+    driver_path = None
+    if platform.system() == "Windows":
+        driver_path = os.path.expanduser("~\scoop\shims\chromedriver.exe")
+    if platform.system() == "Linux":
+        driver_path = "/usr/bin/chromedriver"
+
 
     
     for url in urls:
