@@ -37,6 +37,15 @@ lbl_save.grid(row=0, column=0, padx=5, pady=5)
 
 en_save = ttk.Entry(master=frm_save, width=58)
 
+path = ""
+try:
+    fh = open(os.path.expanduser("~/.lastsavepath"), "r")
+    path = fh.read()
+    en_save.insert(0, path)
+    fh.close()
+except:
+    pass
+
 if en_save.get() == "":
     en_save.insert(0, os.path.expanduser("~/Downloads").replace("\\", "/"))
 
@@ -49,6 +58,13 @@ def evt_set_path():
     if not path == "":
         en_save.delete(0, tk.END)
         en_save.insert(0, path)
+        try:
+            conf = os.path.expanduser("~/.lastsavepath")
+            fh = open(conf, "w")
+            fh.write(path)
+            fh.close()
+        except:
+            pass
 
 
 btn_save = ttk.Button(master=frm_save, text="Browse", command=evt_set_path)
