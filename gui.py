@@ -166,13 +166,12 @@ def evt_download(btn: tk.Button):
         if os.path.exists(str(output_location + dl_name + ".pdf")):
             lbl_status.config(text="Download Successful!")
             time.sleep(2.5)
-            lbl_status.config(text="Ready")
         else:
             lbl_status.config("Download Failed.")
             time.sleep(2.5)
-            lbl_status.config(text="Ready")
 
     clear()
+    lbl_status.config(text="Ready")
     btn["state"] = "enabled"
     
 
