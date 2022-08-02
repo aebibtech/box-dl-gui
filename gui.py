@@ -45,8 +45,6 @@ def theme():
         pass
 
 
-bold = font.Font(weight="bold")
-
 # Frame - Save Path
 frm_save = tk.Frame(borderwidth=2,border=1)
 frm_save.pack(padx=5, pady=5)
