@@ -180,12 +180,12 @@ def evt_download(btn: tk.Button):
 
 
 btn_dl = ttk.Button(master=frm_dl, text="Download", command=lambda: threading.Thread(target=evt_download, args=[btn_dl]).start())
-btn_dl.grid(row=0, padx=110, pady=5, sticky="e")
+btn_dl.grid(row=0, padx=130, pady=5, sticky="e")
 
 
 lbl_status.grid(row=2, padx=5, pady=5, sticky="w")
 
-btn_open_fol = ttk.Button(master=frm_dl, text="Open Folder", command=evt_open_fol)
+btn_open_fol = ttk.Button(master=frm_dl, text="Open Save Path", command=evt_open_fol)
 btn_open_fol.grid(row=0, padx=5, pady=5, sticky="e")
 # End
 
