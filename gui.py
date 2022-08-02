@@ -28,8 +28,9 @@ import threading
 window = tk.Tk()
 window.title("Box.com Downloader GUI")
 window.wm_resizable(width=False, height=False)
+pl = platform.system()
 
-if platform.system() == "Windows":
+if pl == "Windows":
     from winreg import *
 
 # For Windows only
@@ -39,7 +40,6 @@ def theme():
         key = OpenKey(registry, r'SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize')
         mode = QueryValueEx(key, "AppsUseLightTheme")
         sv_ttk.set_theme("light" if mode[0] else "dark")
-        # window.after(100, theme)
     except:
         pass
 
@@ -99,16 +99,17 @@ lbl_links.grid(row=0, padx=5, pady=5, sticky="w")
 txt_links = tk.Text(master=frm_dl, width=63, height=20)
 txt_links.grid(row=1, padx=5, pady=5)
 
-lbl_status = ttk.Label(master=frm_dl,text="Status: Ready")
+lbl_status = ttk.Label(master=frm_dl,text="Ready")
 
 def clear():
     global lbl_status
     txt_links.delete("1.0", "end")
-    lbl_status.config(text="Status: Ready")
+    lbl_status.config(text="Ready")
 
 
 def evt_download(btn: tk.Button):
     global lbl_status
+    global pl
     from scraper import Scraper, url_checker
     from downloader import download_file
 
@@ -120,22 +121,22 @@ def evt_download(btn: tk.Button):
         btn["state"] = "enabled"
         return
     driver_path = None
-    if platform.system() == "Windows":
+    if pl == "Windows":
         driver_path = os.path.expanduser("~\scoop\shims\chromedriver.exe")
-    if platform.system() == "Linux":
+    if pl == "Linux":
         driver_path = "/usr/bin/chromedriver"
 
-    lbl_status.config(text="Status: Checking Links")
+    lbl_status.config(text="Checking Links")
     for url in urls:
         if not url.startswith("https://"):
             clear()
-            lbl_status.config(text="Status: Invalid URL")
+            lbl_status.config(text="Invalid URL")
             time.sleep(1)
-            lbl_status.config(text="Status: Ready")
+            lbl_status.config(text="Ready")
             btn["state"] = "enabled"
             return
 
-    lbl_status.config(text="Status: Downloading")
+    lbl_status.config(text="Downloading")
     for url in urls:
         box_object = Scraper(url, driver_path, False, 10)
         box_object.load_url()
@@ -151,18 +152,19 @@ def evt_download(btn: tk.Button):
         if not os.path.exists(directory):
             os.makedirs(directory)
         
+        lbl_status.config(text="Saving as {}".format(str(dl_name + ".pdf")))
         download_file(url=dl_url, path=str(output_location + dl_name + ".pdf"))
         if os.path.exists(str(output_location + dl_name + ".pdf")):
-            lbl_status.config(text="Status: Download Successful!")
+            lbl_status.config(text="Download Successful!")
             time.sleep(2.5)
-            lbl_status.config(text="Status: Ready")
+            lbl_status.config(text="Ready")
         else:
-            lbl_status.config("Status: Download Failed.")
+            lbl_status.config("Download Failed.")
             time.sleep(2.5)
-            lbl_status.config(text="Status: Ready")
+            lbl_status.config(text="Ready")
 
-        clear()
-        btn["state"] = "enabled"
+    clear()
+    btn["state"] = "enabled"
     
 
 
@@ -173,9 +175,9 @@ btn_dl.grid(row=2, padx=5, pady=5, sticky="w")
 lbl_status.grid(row=2, padx=100, pady=5, sticky="w")
 # End
 
-# If Windows, apply themes
-pl = platform.system()
 print("Platform:", pl)
+
+# If Windows, apply themes
 if pl == "Windows":
     theme()
 
