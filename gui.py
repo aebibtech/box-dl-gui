@@ -24,6 +24,7 @@ from tkinter import font
 import sv_ttk
 import time
 import threading
+import subprocess
 
 window = tk.Tk()
 window.title("Box.com Downloader GUI")
@@ -101,6 +102,16 @@ txt_links.grid(row=1, padx=5, pady=5)
 
 lbl_status = ttk.Label(master=frm_dl,text="Ready")
 
+def evt_open_fol():
+    global pl
+    f_exp = ""
+    if pl == "Windows":
+        fol = os.path.normpath(en_save.get())
+        f_exp = os.path.join(os.getenv("WINDIR"), "explorer.exe")
+        subprocess.run([f_exp, fol])
+    elif pl == "Linux":
+        os.system("xdg-open {}".format(en_save.get())) # really?
+
 def clear():
     global lbl_status
     txt_links.delete("1.0", "end")
@@ -169,10 +180,13 @@ def evt_download(btn: tk.Button):
 
 
 btn_dl = ttk.Button(master=frm_dl, text="Download", command=lambda: threading.Thread(target=evt_download, args=[btn_dl]).start())
-btn_dl.grid(row=2, padx=5, pady=5, sticky="w")
+btn_dl.grid(row=0, padx=110, pady=5, sticky="e")
 
 
-lbl_status.grid(row=2, padx=100, pady=5, sticky="w")
+lbl_status.grid(row=2, padx=5, pady=5, sticky="w")
+
+btn_open_fol = ttk.Button(master=frm_dl, text="Open Folder", command=evt_open_fol)
+btn_open_fol.grid(row=0, padx=5, pady=5, sticky="e")
 # End
 
 print("Platform:", pl)
