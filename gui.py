@@ -20,7 +20,6 @@ import platform
 import os
 from tkinter import filedialog
 from tkinter import messagebox
-from tkinter import font
 import sv_ttk
 import time
 import threading
@@ -137,7 +136,7 @@ def evt_download(btn: tk.Button):
 
     lbl_status.config(text="Checking Links")
     for url in urls:
-        if not url.startswith("https://"):
+        if not url_checker(url):
             clear()
             lbl_status.config(text="Invalid URL")
             time.sleep(1)
