@@ -138,7 +138,7 @@ def evt_download(btn: tk.Button):
     for url in urls:
         if not url_checker(url):
             clear()
-            lbl_status.config(text="Invalid URL")
+            lbl_status.config(text="One of the URLs is invalid")
             time.sleep(1)
             lbl_status.config(text="Ready")
             btn["state"] = "enabled"
