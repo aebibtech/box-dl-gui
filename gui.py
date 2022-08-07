@@ -109,10 +109,11 @@ def evt_open_fol():
     elif pl == "Linux":
         os.system("xdg-open {}".format(en_save.get())) # really?
 
-def clear():
+def reset(btn: tk.Button):
     global lbl_status
     txt_links.delete("1.0", "end")
     lbl_status.config(text="Ready")
+    btn["state"] = "enabled"
 
 
 def evt_download(btn: tk.Button):
@@ -134,18 +135,13 @@ def evt_download(btn: tk.Button):
     if pl == "Linux":
         driver_path = "/usr/bin/chromedriver"
 
-    lbl_status.config(text="Checking Links")
     for url in urls:
+        lbl_status.config(text="Checking Link")
         if not url_checker(url):
-            clear()
-            lbl_status.config(text="One of the URLs is invalid")
+            lbl_status.config(text="Invalid URL")
             time.sleep(1)
             lbl_status.config(text="Ready")
-            btn["state"] = "enabled"
-            return
-
-    lbl_status.config(text="Downloading")
-    for url in urls:
+            continue
         box_object = Scraper(url, driver_path, False, 10)
         box_object.load_url()
         dl_name = None
@@ -156,9 +152,7 @@ def evt_download(btn: tk.Button):
         except:
             lbl_status.config(text="Invalid Box link.")
             time.sleep(1)
-            clear()
             lbl_status.config(text="Ready")
-            btn["state"] = "enabled"
             continue
 
         output_location = en_save.get()
@@ -172,18 +166,18 @@ def evt_download(btn: tk.Button):
             os.makedirs(directory)
         
         if dl_name is not None and dl_url is not None:
+            lbl_status.config(text="Downloading")
+            time.sleep(1)
             lbl_status.config(text="Saving as {}".format(str(dl_name + ".pdf")))
             download_file(url=dl_url, path=str(output_location + dl_name + ".pdf"))
             if os.path.exists(str(output_location + dl_name + ".pdf")):
                 lbl_status.config(text="Download Successful!")
-                time.sleep(2.5)
+                time.sleep(1.5)
             else:
                 lbl_status.config("Download Failed.")
-                time.sleep(2.5)
+                time.sleep(1.5)
 
-    clear()
-    lbl_status.config(text="Ready")
-    btn["state"] = "enabled"
+    reset(btn)
     
 
 
