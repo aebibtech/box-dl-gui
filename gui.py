@@ -148,8 +148,19 @@ def evt_download(btn: tk.Button):
     for url in urls:
         box_object = Scraper(url, driver_path, False, 10)
         box_object.load_url()
-        dl_name = box_object.get_download_title()
-        dl_url = box_object.get_download_url()
+        dl_name = None
+        dl_url = None
+        try:
+            dl_name = box_object.get_download_title()
+            dl_url = box_object.get_download_url()
+        except:
+            lbl_status.config(text="Invalid Box link.")
+            time.sleep(1)
+            clear()
+            lbl_status.config(text="Ready")
+            btn["state"] = "enabled"
+            continue
+
         output_location = en_save.get()
 
         if not output_location.endswith("/"):
@@ -160,14 +171,15 @@ def evt_download(btn: tk.Button):
         if not os.path.exists(directory):
             os.makedirs(directory)
         
-        lbl_status.config(text="Saving as {}".format(str(dl_name + ".pdf")))
-        download_file(url=dl_url, path=str(output_location + dl_name + ".pdf"))
-        if os.path.exists(str(output_location + dl_name + ".pdf")):
-            lbl_status.config(text="Download Successful!")
-            time.sleep(2.5)
-        else:
-            lbl_status.config("Download Failed.")
-            time.sleep(2.5)
+        if dl_name is not None and dl_url is not None:
+            lbl_status.config(text="Saving as {}".format(str(dl_name + ".pdf")))
+            download_file(url=dl_url, path=str(output_location + dl_name + ".pdf"))
+            if os.path.exists(str(output_location + dl_name + ".pdf")):
+                lbl_status.config(text="Download Successful!")
+                time.sleep(2.5)
+            else:
+                lbl_status.config("Download Failed.")
+                time.sleep(2.5)
 
     clear()
     lbl_status.config(text="Ready")
