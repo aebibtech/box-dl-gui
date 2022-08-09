@@ -77,7 +77,7 @@ class Scraper:
             srv.creationflags = CREATE_NO_WINDOW
             self.driver_obj = webdriver.Chrome(service=srv, chrome_options=chrome_options)
         else:
-            self.driver_obj = webdriver.Chrome(driver_location=self.driver_location, chrome_options=chrome_options)
+            self.driver_obj = webdriver.Chrome(self.driver_location, chrome_options=chrome_options)
 
     def load_url(self):
         """
