@@ -22,7 +22,6 @@ from pyvirtualdisplay import Display
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
-from subprocess import CREATE_NO_WINDOW
 
 def url_checker(url):
     """
@@ -70,10 +69,15 @@ class Scraper:
         self.wait_load_time = wait_time
         self.use_x11 = use_x11
         self.driver_location = driver_location or "/usr/local/bin/chromedriver"
-        srv = Service(executable_path=self.driver_location)
-        srv.creationflags = CREATE_NO_WINDOW
         self.url = url
-        self.driver_obj = webdriver.Chrome(service=srv, chrome_options=chrome_options)
+        srv = None
+        if platform.system() == "Windows":
+            from subprocess import CREATE_NO_WINDOW
+            srv = Service(executable_path=self.driver_location)
+            srv.creationflags = CREATE_NO_WINDOW
+            self.driver_obj = webdriver.Chrome(service=srv, chrome_options=chrome_options)
+        else:
+            self.driver_obj = webdriver.Chrome(driver_location=self.driver_location, chrome_options=chrome_options)
 
     def load_url(self):
         """
