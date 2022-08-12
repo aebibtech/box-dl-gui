@@ -17,7 +17,8 @@ call setup.cmd
 ### Usage
 1. Run `BoxGUI.cmd` from the Folder.
 2. (Optional) You can also create a shortcut of it on the Desktop.
-
+3. Paste box.com links on the space provided, separated by space or new line.
+4. Press **Download**.
 
 ### Development
 
