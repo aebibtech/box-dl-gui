@@ -30,7 +30,7 @@ def url_checker(url):
        :rtype: bool
        :return boolean
     """
-    url_check_regex = re.compile(r"https:\/\/(.*).box.com\/(.*)")  # url check regex
+    url_check_regex = re.compile(r"https:\/\/(.*)\.box\.com\/(.*)")  # url check regex
     if re.match(url_check_regex, url) is not None:
         # return "box.com" in url  # really?
         return True

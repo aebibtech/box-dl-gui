@@ -31,6 +31,9 @@ pl = platform.system()
 
 class BoxGUIApp(tk.Tk):
     def __init__(self):
+        """
+        Initializes a new Box GUI Window.
+        """
         super().__init__()
         self.title("Box.com Downloader GUI")
         self.wm_resizable(width=False, height=False)
@@ -66,6 +69,9 @@ class BoxGUIApp(tk.Tk):
         # End Frame for Download Links
 
     def get_last_path(self):
+        """
+        Retrieves the last save path set by the user from the ~/.lastsavepath file.
+        """
         en_save = self.en_save
         path = ""
         try:
@@ -80,11 +86,17 @@ class BoxGUIApp(tk.Tk):
             en_save.insert(0, os.path.expanduser("~/Downloads").replace("\\", "/"))
 
     def reset(self):
+        """
+        Removes all of the contents of the Links text box.
+        """
         self.txt_links.delete("1.0", "end")
         self.lbl_status.config(text="Ready")
         self.btn_dl["state"] = "enabled"
     
     def evt_set_path(self):
+        """
+        Event handler for the Browse button.
+        """
         en_save = self.en_save
         path = filedialog.askdirectory(title="Choose PDF Save Path")
 
@@ -101,6 +113,9 @@ class BoxGUIApp(tk.Tk):
 
 
     def evt_open_fol(self):
+        """
+        Event handler for the Open Save Path button.
+        """
         global pl
         f_exp = ""
         if pl == "Windows":
@@ -112,6 +127,9 @@ class BoxGUIApp(tk.Tk):
 
 
     def evt_download(self):
+        """
+        Event Handler for the Download button.
+        """
         btn = self.btn_dl
         txt_links = self.txt_links
         lbl_status = self.lbl_status
@@ -180,6 +198,9 @@ class BoxGUIApp(tk.Tk):
     
     # # For Windows only
     def theme(self):
+        """
+        Apply sv_ttk theme on Windows 10 and above.
+        """
         global pl
         if pl == "Windows":
             from winreg import ConnectRegistry, OpenKey, QueryValueEx, HKEY_CURRENT_USER
