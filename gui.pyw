@@ -24,6 +24,7 @@ import sv_ttk
 import time
 import threading
 import subprocess
+import re
 
 # Get the platform where this app is run
 # Used for: opening save path, determining chromedriver path, themes
@@ -77,7 +78,10 @@ class BoxGUIApp(tk.Tk):
         try:
             fh = open(os.path.expanduser("~/.lastsavepath"), "r")
             path = fh.read()
-            en_save.insert(0, path)
+            if os.path.exists(path):
+                en_save.insert(0, path)
+            else:
+                en_save.insert(0, os.path.expanduser("~/Downloads").replace("\\", "/"))
             fh.close()
         except:
             pass
@@ -92,6 +96,26 @@ class BoxGUIApp(tk.Tk):
         self.txt_links.delete("1.0", "end")
         self.lbl_status.config(text="Ready")
         self.btn_dl["state"] = "enabled"
+
+    def validate_outfile_name(self, input_path):
+        filename, extension = os.path.splitext(input_path)
+        if os.path.exists(input_path):
+            output_path = ""
+            pattern = '\([0-9]\)'
+            match = re.search(pattern, filename)
+            if match:
+                version = filename[match.start() + 1]
+                try: new_version = int(version) + 1 
+                except: new_version = 1
+                output_path = f"{filename[:match.start()]}({new_version}){extension}"
+                output_path = self.validate_outfile_name(output_path)
+            else: 
+                version = 1
+                output_path = f"{filename}({version}){extension}"
+        
+            return output_path
+        else:
+            return input_path
     
     def evt_set_path(self):
         """
@@ -184,9 +208,10 @@ class BoxGUIApp(tk.Tk):
             if dl_name is not None and dl_url is not None:
                 lbl_status.config(text="Downloading")
                 time.sleep(1)
+                fin_path = self.validate_outfile_name(str(output_location + dl_name + ".pdf"))
                 lbl_status.config(text="Saving as {}".format(str(dl_name + ".pdf")))
-                download_file(url=dl_url, path=str(output_location + dl_name + ".pdf"))
-                if os.path.exists(str(output_location + dl_name + ".pdf")):
+                download_file(url=dl_url, path=fin_path)
+                if os.path.exists(fin_path):
                     lbl_status.config(text="Download Successful!")
                     time.sleep(1.5)
                 else:
