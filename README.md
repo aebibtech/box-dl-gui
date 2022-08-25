@@ -32,7 +32,11 @@ Make a change in your file and instantanously see your updates!
  - Checkout the source code to know more
 
 ### Did you find this useful?
+lfasmpao
 [![ko-fi](https://www.ko-fi.com/img/donate_sm.png)](https://ko-fi.com/A362BEU)
+
+aebibtech
+[![ko-fi](https://www.ko-fi.com/img/donate_sm.png)](https://ko-fi.com/aebibtech)
 
 License
 ----
