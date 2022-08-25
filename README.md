@@ -26,7 +26,9 @@ Want to contribute? Great!
 Make a change in your file and instantanously see your updates!
 
 ### Todos
- - Write MORE Tests
+ - Write Tests
+ - Parallel Downloads
+ - Table View for Links
  - Checkout the source code to know more
 
 ### Did you find this useful?
