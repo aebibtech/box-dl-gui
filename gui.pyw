@@ -175,6 +175,11 @@ class BoxGUIApp(tk.Tk):
         if pl == "Linux":
             driver_path = "/usr/bin/chromedriver"
 
+        if not os.path.exists(driver_path):
+            messagebox.showerror(title="Error", message="WebDriver for Chrome is not found.\nInstall it from https://chromedriver.chromium.org")
+            btn["state"] = "enabled"
+            return
+
         for url in urls:
             lbl_status.config(text="Checking Link")
             if not url_checker(url):
