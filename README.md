@@ -2,6 +2,8 @@
 
 This application can scrape and download protected docx, pdf files in box.com and save it as an editable PDF file. This repo is forked from [lfasmpao's](https://github.com/lfasmpao/box.com-downloader) box.com downloader.
 
+![Screenshot](https://github.com/aebibtech/box-dl-gui/blob/master/screenshot.png?raw=true)
+
 ### Installation
 
 This app requires [Python 3](https://python.org/), [Google Chrome](https://chrome.google.com), and Selenium Chrome Web Driver to run.
